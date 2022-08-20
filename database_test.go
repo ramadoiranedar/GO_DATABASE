@@ -7,11 +7,10 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func TestEmpty(t *testing.T) {
-	db, err := sql.Open("mysql", "root:root@tcp(host:3306)/my_test")
-	if err != nil {
+func TestOpenConnection(t *testing.T) {
+	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/db_golang")
+	if err != nil { // catch error
 		panic(err)
 	}
-	defer db.Close()
-
+	defer db.Close() // dont forget to close after using connection
 }
